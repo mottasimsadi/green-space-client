@@ -12,7 +12,7 @@ const router = createBrowserRouter([
     Component: MainLayout,
     errorElement: <ErrorPage></ErrorPage>,
     children: [
-      { path: "/", Component: Home },
+      { index: true, path: "/", Component: Home },
       { path: "/login", Component: Login },
       { path: "/register", Component: Register },
       { path: "/forget-password", Component: ForgetPassword },

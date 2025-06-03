@@ -145,9 +145,7 @@ const Login = () => {
             type="submit"
             disabled={loading}
             className={`w-full py-2 px-4 rounded font-semibold transition bg-[#579857] text-white ${
-              loading
-                ? "cursor-not-allowed bg-gray-300"
-                : "cursor-pointer"
+              loading ? "cursor-not-allowed opacity-70" : "cursor-pointer"
             }`}
           >
             {loading ? "Signing in..." : "Sign In"}

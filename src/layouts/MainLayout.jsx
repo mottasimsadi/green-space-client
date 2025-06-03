@@ -1,15 +1,17 @@
 import React from "react";
-import { Outlet } from "react-router";
+import { Outlet, useNavigation } from "react-router";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { ToastContainer } from "react-toastify";
+import Loading from "../pages/Loading";
 
 const MainLayout = () => {
+  const { state } = useNavigation();
   return (
     <div>
       <Navbar></Navbar>
       <div className="max-w-7xl mx-auto">
-        <Outlet></Outlet>
+        {state == "loading" ? <Loading></Loading> : <Outlet></Outlet>}
       </div>
       <Footer></Footer>
       <ToastContainer />

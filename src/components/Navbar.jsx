@@ -3,9 +3,10 @@ import { Link, NavLink } from "react-router";
 import { AuthContext } from "../contexts/AuthContext";
 import { FaSun, FaMoon, FaBars, FaTimes } from "react-icons/fa";
 import { toast } from "react-toastify";
+import Loading from "../pages/Loading";
 
 const Navbar = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut, loading } = useContext(AuthContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
@@ -178,7 +179,9 @@ const Navbar = () => {
               )}
             </button>
 
-            {user ? (
+            {loading ? (
+              <Loading />
+            ) : user ? (
               <div className="dropdown dropdown-end">
                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                   <div className="w-10 rounded-full">

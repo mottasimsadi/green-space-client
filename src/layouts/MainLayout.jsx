@@ -10,7 +10,7 @@ const MainLayout = () => {
   return (
     <div>
       <Navbar></Navbar>
-      <div className="max-w-7xl mx-auto">
+      <div className="mx-auto">
         {state == "loading" ? <Loading></Loading> : <Outlet></Outlet>}
       </div>
       <Footer></Footer>

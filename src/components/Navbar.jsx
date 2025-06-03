@@ -212,13 +212,7 @@ const Navbar = () => {
             ) : (
               <Link
                 to="/login"
-                className="btn"
-                style={{
-                  backgroundColor: "#579857",
-                  color: "white",
-                  fontWeight: "bold",
-                  borderRadius: "0.5rem",
-                }}
+                className="btn bg-[#579857] text-white font-bold rounded-lg"
               >
                 Login/Signup
               </Link>

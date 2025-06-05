@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "name": "Emma Johnson",
+    "specialty": "Vertical Gardens",
+    "status": "active",
+    "imageUrl": "https://i.postimg.cc/yY2cQQMy/gardener-1.jpg",
+    "bio": "Urban gardening specialist with 10+ years experience transforming small spaces."
+  },
+  {
+    "id": 2,
+    "name": "Michael Chen",
+    "specialty": "Organic Vegetables",
+    "status": "active",
+    "imageUrl": "https://i.postimg.cc/XNHwF7xh/gardener-2.jpg",
+    "bio": "Passionate about sustainable food growing and soil health."
+  },
+  {
+    "id": 3,
+    "name": "Sophia Rodriguez",
+    "specialty": "Tropical Plants",
+    "status": "active",
+    "imageUrl": "https://i.postimg.cc/j2FPrZLK/gardener-3.jpg",
+    "bio": "Expert in creating indoor tropical paradises in any climate."
+  },
+  {
+    "id": 4,
+    "name": "James Wilson",
+    "specialty": "Native Plants",
+    "status": "active",
+    "imageUrl": "https://i.postimg.cc/pXmKBb6d/gardener-4.png",
+    "bio": "Focuses on eco-friendly landscaping using indigenous species."
+  },
+  {
+    "id": 5,
+    "name": "Aisha Patel",
+    "specialty": "Herb Gardens",
+    "status": "active",
+    "imageUrl": "https://i.postimg.cc/yxdc5w6v/gardener-5.png",
+    "bio": "Medicinal herb specialist growing over 50 varieties."
+  },
+  {
+    "id": 6,
+    "name": "David Kim",
+    "specialty": "Bonsai",
+    "status": "active",
+    "imageUrl": "https://i.postimg.cc/nhQYnb4W/gardener-6.jpg",
+    "bio": "Award-winning bonsai artist with 15+ years cultivation experience."
+  },
+  {
+    "id": 7,
+    "name": "Sarah Thompson",
+    "specialty": "Permaculture",
+    "status": "inactive",
+    "imageUrl": "https://i.postimg.cc/tT9hdsK0/gardener-7.png",
+    "bio": "Permaculture designer creating sustainable food forests."
+  },
+  {
+    "id": 8,
+    "name": "Robert Zhang",
+    "specialty": "Orchids",
+    "status": "inactive",
+    "imageUrl": "https://i.postimg.cc/6QrrGr1L/gardener-8.png",
+    "bio": "Rare orchid collector and cultivation expert."
+  },
+  {
+    "id": 9,
+    "name": "Lisa Wong",
+    "specialty": "Hydroponics",
+    "status": "inactive",
+    "imageUrl": "https://i.postimg.cc/bvc0JCLw/gardener-9.png",
+    "bio": "Innovator in soil-less growing systems for urban environments."
+  },
+  {
+    "id": 10,
+    "name": "Thomas Baker",
+    "specialty": "Succulents",
+    "status": "inactive",
+    "imageUrl": "https://i.postimg.cc/zXQFmXgW/gardener-10.png",
+    "bio": "Specialist in drought-resistant plants and xeriscaping."
+  }
+]

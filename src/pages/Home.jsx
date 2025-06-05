@@ -157,8 +157,10 @@ const Home = () => {
           Active Gardeners in Our Community
         </h2>
 
-        {loading ? <Loading></Loading> : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {loading ? (
+          <Loading></Loading>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 sm:px-6 lg:px-8">
             {activeGardeners.map((gardener) => (
               <div
                 key={gardener.id}
@@ -186,14 +188,14 @@ const Home = () => {
                   </div>
                 </div>
                 <p
-                  className={`mb-4 ${
+                  className={`mb-4${
                     isDark ? "text-[#cccccc]" : "text-gray-600"
                   }`}
                 >
                   {gardener.bio}
                 </p>
                 <div className="flex justify-end">
-                  <span className="px-2 py-1 rounded text-xs badge badge-success text-white">
+                  <span className="px-2 py-1 rounded-full text-xs badge badge-success text-white">
                     Active
                   </span>
                 </div>

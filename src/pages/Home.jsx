@@ -1,13 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router";
 import { FaChevronLeft, FaChevronRight, FaHeart } from "react-icons/fa";
+import gardenersData from "../data/gardeners.json"
+import Loading from "./Loading";
 
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loading, setLoading] = useState(true);
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  const [activeGardeners, setActiveGardeners] = useState([]);
 
   useEffect(() => {
+    // Filter active gardeners on component mount
+    const active = gardenersData.filter(
+      (gardener) => gardener.status === "active"
+    );
+    setActiveGardeners(active);
+    setLoading(false);
+
+    // Theme setup
     document.documentElement.classList.toggle("dark", theme === "dark");
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
@@ -134,6 +145,62 @@ const Home = () => {
             ></button>
           ))}
         </div>
+      </section>
+
+      {/* Featured Gardeners Section */}
+      <section className="py-16 px-4 container mx-auto">
+        <h2
+          className={`text-3xl font-bold text-center mb-12 ${
+            isDark ? "text-[#f3f8f3]" : "text-[#122312]"
+          }`}
+        >
+          Active Gardeners in Our Community
+        </h2>
+
+        {loading ? <Loading></Loading> : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {activeGardeners.map((gardener) => (
+              <div
+                key={gardener.id}
+                className={`p-6 rounded-lg ${
+                  isDark ? "bg-[#1a2733]" : "bg-white"
+                } shadow-md transition-transform hover:scale-[1.02]`}
+              >
+                <div className="flex items-center mb-4">
+                  <div className="w-16 h-16 rounded-full overflow-hidden">
+                    <img
+                      src={gardener.imageUrl}
+                      alt={gardener.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="ml-4">
+                    <h3 className="text-xl font-semibold">{gardener.name}</h3>
+                    <p
+                      className={`${
+                        isDark ? "text-[#7db47d]" : "text-[#579857]"
+                      }`}
+                    >
+                      {gardener.specialty}
+                    </p>
+                  </div>
+                </div>
+                <p
+                  className={`mb-4 ${
+                    isDark ? "text-[#cccccc]" : "text-gray-600"
+                  }`}
+                >
+                  {gardener.bio}
+                </p>
+                <div className="flex justify-end">
+                  <span className="px-2 py-1 rounded text-xs badge badge-success text-white">
+                    Active
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </section>
     </div>
   );

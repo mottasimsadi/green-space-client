@@ -13,7 +13,7 @@
     "specialty": "Organic Vegetables",
     "status": "active",
     "imageUrl": "https://i.postimg.cc/XNHwF7xh/gardener-2.jpg",
-    "bio": "Passionate about sustainable food growing and soil health."
+    "bio": "Passionate about the sustainable food growing and soil health."
   },
   {
     "id": 3,
@@ -21,7 +21,7 @@
     "specialty": "Tropical Plants",
     "status": "active",
     "imageUrl": "https://i.postimg.cc/j2FPrZLK/gardener-3.jpg",
-    "bio": "Expert in creating indoor tropical paradises in any climate."
+    "bio": "Expert in creating the indoor tropical paradises in any climate."
   },
   {
     "id": 4,
@@ -37,7 +37,7 @@
     "specialty": "Herb Gardens",
     "status": "active",
     "imageUrl": "https://i.postimg.cc/yxdc5w6v/gardener-5.png",
-    "bio": "Medicinal herb specialist growing over 50 varieties."
+    "bio": "Medicinal herb specialist for growing over 50 varieties of herbs."
   },
   {
     "id": 6,

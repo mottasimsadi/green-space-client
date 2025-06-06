@@ -5,6 +5,7 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import ForgetPassword from "../pages/ForgetPassword";
+import ExploreGardeners from "../pages/ExploreGardeners";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
       { path: "/login", Component: Login },
       { path: "/register", Component: Register },
       { path: "/forget-password", Component: ForgetPassword },
+      { path: "/explore-gardeners", Component: ExploreGardeners },
     ],
   },
   {

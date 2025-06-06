@@ -23,7 +23,6 @@ const ErrorPage = () => {
           src="https://i.postimg.cc/prp0FP1t/404-error-page.png"
           alt="404 Not Found - Nature-themed error illustration"
           className="w-full h-auto rounded-lg shadow-xl hover:scale-[1.02] transition-transform duration-300"
-          loading="lazy"
           width={600}
           height={400}
         />

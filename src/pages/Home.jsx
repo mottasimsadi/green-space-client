@@ -63,7 +63,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    const interval = setInterval(nextSlide, 5000);
+    const interval = setInterval(nextSlide, 3000);
     return () => clearInterval(interval);
   }, [currentSlide]);
 
@@ -210,7 +210,6 @@ const Home = () => {
                     src="https://i.postimg.cc/DzrQH9LK/spotlight-1.png"
                     alt="Urban community garden with raised beds"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    loading="lazy"
                   />
                 </div>
                 <div
@@ -261,7 +260,6 @@ const Home = () => {
                     src="https://i.postimg.cc/mrfNdLcw/spotlight-2.png"
                     alt="Children learning in school garden"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    loading="lazy"
                   />
                 </div>
                 <div

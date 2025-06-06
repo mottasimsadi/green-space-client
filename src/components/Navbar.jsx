@@ -139,7 +139,7 @@ const Navbar = () => {
             {/* Logo */}
             <Link
               to="/"
-              className="btn btn-ghost normal-case text-xl"
+              className="cursor-pointer normal-case text-xl"
               style={{ color: theme === "dark" ? "#b69079" : "#6B4E31" }}
             >
               <span
@@ -149,6 +149,7 @@ const Navbar = () => {
               >
                 Green
               </span>
+              {" "}
               <span
                 className={`${
                   theme === "dark" ? "text-[#b69079]" : "text-[#a87b61]"

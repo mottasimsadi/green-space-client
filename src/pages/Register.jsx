@@ -122,6 +122,7 @@ const Register = () => {
             </label>
             <input
               id="name"
+              name="name"
               type="text"
               required
               value={formData.name}
@@ -146,6 +147,7 @@ const Register = () => {
             </label>
             <input
               id="email"
+              name="email"
               type="email"
               required
               value={formData.email}
@@ -170,6 +172,7 @@ const Register = () => {
             </label>
             <input
               id="photoURL"
+              name="photoURL"
               type="url"
               value={formData.photoURL}
               onChange={handleChange}
@@ -194,6 +197,7 @@ const Register = () => {
             <div className="relative">
               <input
                 id="password"
+                name="password"
                 type={showPassword ? "text" : "password"}
                 required
                 value={formData.password}

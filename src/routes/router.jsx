@@ -6,6 +6,8 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import ForgetPassword from "../pages/ForgetPassword";
 import ExploreGardeners from "../pages/ExploreGardeners";
+import PrivateRoute from "../contexts/PrivateRoute";
+import ShareTip from "../pages/ShareTip";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +20,14 @@ const router = createBrowserRouter([
       { path: "/register", Component: Register },
       { path: "/forget-password", Component: ForgetPassword },
       { path: "/explore-gardeners", Component: ExploreGardeners },
+      {
+        path: "/share-tips",
+        element: (
+          <PrivateRoute>
+            <ShareTip></ShareTip>
+          </PrivateRoute>
+        ),
+      },
     ],
   },
   {

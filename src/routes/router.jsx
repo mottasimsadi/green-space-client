@@ -8,6 +8,7 @@ import ForgetPassword from "../pages/ForgetPassword";
 import ExploreGardeners from "../pages/ExploreGardeners";
 import PrivateRoute from "../contexts/PrivateRoute";
 import ShareTip from "../pages/ShareTip";
+import BrowseTips from "../pages/BrowseTips";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <ShareTip></ShareTip>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/browse-tips",
+        element: (
+          <PrivateRoute>
+            <BrowseTips></BrowseTips>
           </PrivateRoute>
         ),
       },

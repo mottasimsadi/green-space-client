@@ -7,8 +7,9 @@ import Loading from "./Loading";
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  const [trendingTips, setTrendingTips] = useState([]);
   const [activeGardeners, setActiveGardeners] = useState([]);
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState({
     title: "",
@@ -18,13 +19,30 @@ const Home = () => {
   const isDark = theme === "dark";
 
   useEffect(() => {
+    document.documentElement.classList.toggle("dark", isDark);
+    document.documentElement.setAttribute("data-theme", theme);
+
     const active = gardenersData.filter((g) => g.status === "active");
     setActiveGardeners(active);
     setLoading(false);
-
-    document.documentElement.classList.toggle("dark", isDark);
-    document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
+
+  useEffect(() => {
+    const fetchTrendingTips = async () => {
+      try {
+        const res = await fetch("http://localhost:3000/tips/trending");
+        if (!res.ok) throw new Error("Failed to fetch trending tips");
+        const data = await res.json();
+        setTrendingTips(data);
+        setLoading(false);
+      } catch (err) {
+        console.error(err);
+        setLoading(false);
+      }
+    };
+    fetchTrendingTips();
+  }, []);
+  
 
   const bannerSlides = [
     {
@@ -182,7 +200,141 @@ const Home = () => {
         )}
       </section>
 
-       {/* Extra Section 1 */}
+      {/* Top Trending Tips Section */}
+      <section
+        className={`py-16 px-4 ${isDark ? "bg-[#274227]" : "bg-[#e7f1e7]"}`}
+      >
+        <div className="mx-auto max-w-[1400px] px-8">
+          <h2
+            className={`text-3xl font-bold text-center mb-12 ${
+              isDark ? "text-[#f3f8f3]" : "text-[#366236]"
+            }`}
+          >
+            Top Trending Garden Tips
+          </h2>
+
+          {loading ? (
+            <div className="flex justify-center">
+              <Loading />
+            </div>
+          ) : trendingTips.length === 0 ? (
+            <p
+              className={`text-center text-lg ${
+                isDark ? "text-gray-400" : "text-gray-600"
+              }`}
+            >
+              No trending tips to display.
+            </p>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {trendingTips.map((tip) => (
+                <div
+                  key={tip._id}
+                  className={`overflow-hidden rounded-lg shadow-md ${
+                    isDark
+                      ? "bg-[#1a2733] text-[#f3f8f3]"
+                      : "bg-white text-[#274227]"
+                  }`}
+                >
+                  <figure className="relative h-48">
+                    <img
+                      src={
+                        tip.imageUrl ||
+                        "https://i.postimg.cc/j5L3yDkS/plant-placeholder.png"
+                      }
+                      alt={tip.title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute top-2 right-2">
+                      <span
+                        className={`badge ${
+                          tip.difficulty === "Easy"
+                            ? "badge-success"
+                            : tip.difficulty === "Medium"
+                            ? "badge-warning"
+                            : "badge-error"
+                        }`}
+                      >
+                        {tip.difficulty}
+                      </span>
+                    </div>
+                  </figure>
+
+                  <div className="p-6">
+                    <div className="flex justify-between items-center mb-2">
+                      <span
+                        className={`text-sm ${
+                          isDark ? "text-gray-400" : "text-gray-500"
+                        }`}
+                      >
+                        {tip.category}
+                      </span>
+
+                      <div className="flex items-center text-[#d53f3f]">
+                        <svg
+                          className="h-5 w-5 mr-1"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                          aria-hidden="true"
+                        >
+                          <path
+                            d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
+                            2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 
+                            4.5 2.09C13.09 3.81 14.76 3 16.5 
+                            3 19.58 3 22 5.42 22 8.5c0 
+                            3.78-3.4 6.86-8.55 11.54L12 
+                            21.35z"
+                          />
+                        </svg>
+                        <span>{tip.totalLiked || 0}</span>
+                      </div>
+                    </div>
+
+                    <h3
+                      className={`text-xl font-semibold mb-2 ${
+                        isDark ? "text-[#f3f8f3]" : "text-[#366236]"
+                      }`}
+                    >
+                      {tip.title}
+                    </h3>
+
+                    <p
+                      className={`text-sm mb-4 ${
+                        isDark ? "text-gray-300" : "text-gray-600"
+                      }`}
+                    >
+                      Plant type: {tip.plantType}
+                    </p>
+
+                    <div className="flex justify-between items-center">
+                      <span
+                        className={`text-sm ${
+                          isDark ? "text-[#b69079]" : "text-[#805646]"
+                        }`}
+                      >
+                        By {tip.authorName}
+                      </span>
+
+                      <Link
+                        to={`/tip-details/${tip._id}`}
+                        className={`inline-block px-3 py-1.5 rounded-md font-semibold text-white text-sm transition-colors ${
+                          isDark
+                            ? "bg-[#427c42] hover:bg-[#579857]"
+                            : "bg-[#579857] hover:bg-[#427c42]"
+                        }`}
+                      >
+                        Read More
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Extra Section 1 */}
       {/* Seasonal Calendar */}
       <section className="py-16 px-4 container mx-auto">
         <h2
@@ -304,7 +456,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-      
+
       {/* Extra Section 2 */}
       {/* Community Spotlight */}
       <section

@@ -41,6 +41,7 @@ const ShareTip = () => {
       authorName: user?.displayName || "Anonymous",
       authorEmail: user?.email || "unknown@example.com",
       createdAt: new Date().toISOString(),
+      totalLiked: 0,
     };
 
     try {

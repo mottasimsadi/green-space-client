@@ -4,6 +4,8 @@ import { toast } from "react-toastify";
 
 const BrowseTips = () => {
   const [tips, setTips] = useState([]);
+  const [filteredTips, setFilteredTips] = useState([]);
+  const [difficulty, setDifficulty] = useState("All");
   const [loading, setLoading] = useState(true);
   const theme = localStorage.getItem("theme") || "light";
   const isDark = theme === "dark";
@@ -17,6 +19,7 @@ const BrowseTips = () => {
         const res = await fetch("http://localhost:3000/tips?status=Public");
         const data = await res.json();
         setTips(data);
+        setFilteredTips(data);
       } catch (error) {
         toast.error("Failed to fetch garden tips.");
       } finally {
@@ -26,6 +29,17 @@ const BrowseTips = () => {
 
     fetchTips();
   }, [isDark, theme]);
+
+  useEffect(() => {
+    if (difficulty === "All") {
+      setFilteredTips(tips);
+    } else {
+      const filtered = tips.filter(
+        (tip) => tip.difficulty?.toLowerCase() === difficulty.toLowerCase()
+      );
+      setFilteredTips(filtered);
+    }
+  }, [difficulty, tips]);
 
   return (
     <div
@@ -38,10 +52,26 @@ const BrowseTips = () => {
           Browse Public Garden Tips
         </h2>
 
+        {/* Filter Dropdown */}
+        <div className="mb-6 flex justify-end">
+          <select
+            value={difficulty}
+            onChange={(e) => setDifficulty(e.target.value)}
+            className="select select-bordered w-48"
+          >
+            <option value="All">All Difficulties</option>
+            <option value="Easy">Easy</option>
+            <option value="Medium">Medium</option>
+            <option value="Hard">Hard</option>
+          </select>
+        </div>
+
         {loading ? (
           <p className="text-center text-lg">Loading tips...</p>
-        ) : tips.length === 0 ? (
-          <p className="text-center text-lg">No public tips available.</p>
+        ) : filteredTips.length === 0 ? (
+          <p className="text-center text-lg">
+            No tips found for this difficulty.
+          </p>
         ) : (
           <div className="overflow-x-auto shadow-md rounded-lg border border-gray-200 dark:border-gray-700">
             <table className="table w-full">
@@ -55,7 +85,7 @@ const BrowseTips = () => {
                 </tr>
               </thead>
               <tbody>
-                {tips.map((tip) => (
+                {filteredTips.map((tip) => (
                   <tr
                     key={tip._id}
                     className={

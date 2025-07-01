@@ -125,10 +125,10 @@ const TipDetails = () => {
       {/* Back Button */}
       <div className="mt-10 text-center">
         <button
-          onClick={() => navigate("/browse-tips")}
+          onClick={() => navigate(-1)}
           className="px-6 py-2 cursor-pointer bg-[#579857] hover:bg-[#427c42] text-white rounded font-semibold shadow transition"
         >
-          ← Back to Browse Tips
+          ← Back to Previous Page
         </button>
       </div>
     </div>

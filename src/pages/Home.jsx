@@ -182,6 +182,130 @@ const Home = () => {
         )}
       </section>
 
+       {/* Extra Section 1 */}
+      {/* Seasonal Calendar */}
+      <section className="py-16 px-4 container mx-auto">
+        <h2
+          className={`text-3xl font-bold text-center mb-12 ${
+            isDark ? "text-[#f3f8f3]" : "text-[#122312]"
+          }`}
+        >
+          Seasonal Gardening Calendar
+        </h2>
+        <div
+          className={`p-8 mx-8 rounded-lg shadow-md ${
+            isDark ? "bg-[#1a2733]" : "bg-white"
+          }`}
+        >
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Spring */}
+            <div
+              className={`text-center p-4 rounded-lg ${
+                isDark ? "bg-[#274227]" : "bg-[#e7f1e7]"
+              }`}
+            >
+              <h3
+                className={`text-xl font-semibold mb-3 ${
+                  isDark ? "text-[#7db47d]" : "text-[#366236]"
+                }`}
+              >
+                Spring
+              </h3>
+              <ul
+                className={`space-y-2 text-left ${
+                  isDark ? "text-[#d0e3d0]" : "text-[#2e4f2e]"
+                }`}
+              >
+                <li>• Start seeds indoors</li>
+                <li>• Prepare garden beds</li>
+                <li>• Plant cold-hardy vegetables</li>
+                <li>• Divide perennials</li>
+                <li>• Prune flowering shrubs</li>
+              </ul>
+            </div>
+
+            {/* Summer */}
+            <div
+              className={`text-center p-4 rounded-lg ${
+                isDark ? "bg-[#573d34]" : "bg-[#f0e9e4]"
+              }`}
+            >
+              <h3
+                className={`text-xl font-semibold mb-3 ${
+                  isDark ? "text-[#cbb1a1]" : "text-[#a87b61]"
+                }`}
+              >
+                Summer
+              </h3>
+              <ul
+                className={`space-y-2 text-left ${
+                  isDark ? "text-[#e0d0c7]" : "text-[#6a483c]"
+                }`}
+              >
+                <li>• Regular watering schedule</li>
+                <li>• Harvest vegetables</li>
+                <li>• Deadhead flowers</li>
+                <li>• Monitor for pests</li>
+                <li>• Mulch to retain moisture</li>
+              </ul>
+            </div>
+
+            {/* Fall */}
+            <div
+              className={`text-center p-4 rounded-lg ${
+                isDark ? "bg-[#805646]" : "bg-[#f9f6f4]"
+              }`}
+            >
+              <h3
+                className={`text-xl font-semibold mb-3 ${
+                  isDark ? "text-[#e0d0c7]" : "text-[#9b6b52]"
+                }`}
+              >
+                Fall
+              </h3>
+              <ul
+                className={`space-y-2 text-left ${
+                  isDark ? "text-[#f0e9e4]" : "text-[#805646]"
+                }`}
+              >
+                <li>• Plant spring bulbs</li>
+                <li>• Harvest final crops</li>
+                <li>• Clean up garden beds</li>
+                <li>• Compost fallen leaves</li>
+                <li>• Plant trees and shrubs</li>
+              </ul>
+            </div>
+
+            {/* Winter */}
+            <div
+              className={`text-center p-4 rounded-lg ${
+                isDark ? "bg-[#1a3a4a]" : "bg-[#e0f0f7]"
+              }`}
+            >
+              <h3
+                className={`text-xl font-semibold mb-3 ${
+                  isDark ? "text-[#8fc1e3]" : "text-[#31708f]"
+                }`}
+              >
+                Winter
+              </h3>
+              <ul
+                className={`space-y-2 text-left ${
+                  isDark ? "text-[#d0e3f0]" : "text-[#1a3a4a]"
+                }`}
+              >
+                <li>• Plan next year's garden</li>
+                <li>• Order seeds</li>
+                <li>• Maintain tools</li>
+                <li>• Protect sensitive plants</li>
+                <li>• Start indoor herb garden</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* Extra Section 2 */}
       {/* Community Spotlight */}
       <section
         className={`py-16 px-4 ${isDark ? "bg-[#301f1a]" : "bg-[#f3f0eb]"}`}

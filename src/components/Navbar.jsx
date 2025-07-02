@@ -1,19 +1,36 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../contexts/AuthContext";
 import { FaSun, FaMoon, FaBars, FaTimes } from "react-icons/fa";
 import { toast } from "react-toastify";
-import Loading from "../pages/Loading";
 
 const Navbar = () => {
-  const { user, logOut, loading } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  const dropdownRef = useRef(null); // Ref to track dropdown element
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", theme === "dark");
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
+
+  // Handle clicks outside the dropdown to close it
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsMenuOpen(false); // Close dropdown and reset isMenuOpen
+      }
+    };
+
+    if (isMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMenuOpen]);
 
   const toggleTheme = () => {
     const nextTheme = theme === "light" ? "dark" : "light";
@@ -32,6 +49,11 @@ const Navbar = () => {
       });
   };
 
+  // Close dropdown when a menu item is clicked
+  const handleMenuItemClick = () => {
+    setIsMenuOpen(false);
+  };
+
   const navLinks = (
     <>
       <li>
@@ -42,6 +64,7 @@ const Navbar = () => {
               ? "text-[#7db47d] font-semibold underline"
               : "hover:text-[#7db47d] transition"
           }
+          onClick={handleMenuItemClick}
         >
           Home
         </NavLink>
@@ -54,6 +77,7 @@ const Navbar = () => {
               ? "text-[#7db47d] font-semibold underline"
               : "hover:text-[#7db47d] transition"
           }
+          onClick={handleMenuItemClick}
         >
           Explore Gardeners
         </NavLink>
@@ -66,6 +90,7 @@ const Navbar = () => {
               ? "text-[#7db47d] font-semibold underline"
               : "hover:text-[#7db47d] transition"
           }
+          onClick={handleMenuItemClick}
         >
           Browse Tips
         </NavLink>
@@ -80,6 +105,7 @@ const Navbar = () => {
                   ? "text-[#7db47d] font-semibold underline"
                   : "hover:text-[#7db47d] transition"
               }
+              onClick={handleMenuItemClick}
             >
               Share a Garden Tip
             </NavLink>
@@ -92,6 +118,7 @@ const Navbar = () => {
                   ? "text-[#7db47d] font-semibold underline"
                   : "hover:text-[#7db47d] transition"
               }
+              onClick={handleMenuItemClick}
             >
               My Tips
             </NavLink>
@@ -106,29 +133,29 @@ const Navbar = () => {
       className="shadow-md"
       style={{ backgroundColor: theme === "dark" ? "#122312" : "#E6F2E8" }}
     >
-      <div className="max-w-11/12 mx-auto">
+      <div className="max-w-[95%] mx-auto">
         <div className="navbar min-h-16">
           {/* Start: Mobile menu + logo */}
           <div className="navbar-start">
             {/* Mobile dropdown */}
-            <div className="dropdown lg:hidden">
-              <label
-                tabIndex={0}
+            <div className="dropdown lg:hidden relative" ref={dropdownRef}>
+              <button
                 className="btn btn-ghost"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
+                aria-label="Toggle menu"
               >
                 {isMenuOpen ? (
                   <FaTimes className="w-5 h-5" />
                 ) : (
                   <FaBars className="w-5 h-5" />
                 )}
-              </label>
+              </button>
               {isMenuOpen && (
                 <ul
-                  tabIndex={0}
-                  className="menu menu-sm dropdown-content mt-3 z-50 p-2 shadow rounded-box w-52"
+                  className="menu dropdown-content mt-3 z-[1000] p-4 shadow rounded-box w-52 absolute left-0"
                   style={{
                     backgroundColor: theme === "dark" ? "#122312" : "#f3f8f3",
+                    color: theme === "dark" ? "#E6F2E8" : "#333",
                   }}
                 >
                   {navLinks}
@@ -139,7 +166,7 @@ const Navbar = () => {
             {/* Logo */}
             <Link
               to="/"
-              className="cursor-pointer normal-case text-xl"
+              className="cursor-pointer normal-case text-xl ml-4"
               style={{ color: theme === "dark" ? "#b69079" : "#6B4E31" }}
             >
               <span
@@ -148,8 +175,7 @@ const Navbar = () => {
                 }`}
               >
                 Green
-              </span>
-              {" "}
+              </span>{" "}
               <span
                 className={`${
                   theme === "dark" ? "text-[#b69079]" : "text-[#a87b61]"
@@ -180,7 +206,7 @@ const Navbar = () => {
               )}
             </button>
 
-            { user ? (
+            {user ? (
               <div className="dropdown dropdown-end">
                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                   <div className="w-10 rounded-full">
@@ -195,7 +221,7 @@ const Navbar = () => {
                 </label>
                 <ul
                   tabIndex={0}
-                  className="mt-3 z-[999] p-2 shadow menu menu-sm dropdown-content rounded-box w-52"
+                  className="mt-3 z-[1000] p-2 shadow menu menu-sm dropdown-content rounded-box w-52"
                   style={{
                     backgroundColor: theme === "dark" ? "#122312" : "#E6F2E8",
                   }}

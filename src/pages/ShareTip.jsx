@@ -1,18 +1,15 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { toast } from "react-toastify";
 import { AuthContext } from "../contexts/AuthContext";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 const ShareTip = () => {
   const { user } = useContext(AuthContext);
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  const { theme } = useContext(ThemeContext);
+  const isDark = theme === "dark";
+  
   const [loading, setLoading] = useState(false);
 
-  const isDark = theme === "dark";
-
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", isDark);
-    document.documentElement.setAttribute("data-theme", theme);
-  }, [theme]);
 
   const [formData, setFormData] = useState({
     title: "",

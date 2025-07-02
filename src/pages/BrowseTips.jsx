@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router";
 import { toast } from "react-toastify";
+import { ThemeContext } from "../contexts/ThemeContext";
+
 
 const BrowseTips = () => {
   const [tips, setTips] = useState([]);
   const [filteredTips, setFilteredTips] = useState([]);
   const [difficulty, setDifficulty] = useState("All");
   const [loading, setLoading] = useState(true);
-  const theme = localStorage.getItem("theme") || "light";
+  const { theme } = useContext(ThemeContext);
   const isDark = theme === "dark";
+  
 
   useEffect(() => {
-    document.documentElement.classList.toggle("dark", isDark);
-    document.documentElement.setAttribute("data-theme", theme);
 
     const fetchTips = async () => {
       try {
@@ -28,7 +29,7 @@ const BrowseTips = () => {
     };
 
     fetchTips();
-  }, [isDark, theme]);
+  }, []);
 
   useEffect(() => {
     if (difficulty === "All") {

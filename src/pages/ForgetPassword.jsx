@@ -1,7 +1,9 @@
 import { useState, useContext, useEffect } from "react";
-import { useLocation, useNavigate, Link } from "react-router";
+import { useLocation, Link } from "react-router";
 import { AuthContext } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
+import { ThemeContext } from "../contexts/ThemeContext";
+
 
 const ForgetPassword = () => {
   const { resetPassword } = useContext(AuthContext);
@@ -9,12 +11,9 @@ const ForgetPassword = () => {
 
   const [email, setEmail] = useState(location.state?.email || "");
   const [loading, setLoading] = useState(false);
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
-
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", theme === "dark");
-    document.documentElement.setAttribute("data-theme", theme);
-  }, [theme]);
+  const { theme } = useContext(ThemeContext);
+  const isDark = theme === "dark";
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,8 +31,6 @@ const ForgetPassword = () => {
         setLoading(false);
       });
   };
-
-  const isDark = theme === "dark";
 
   return (
     <div

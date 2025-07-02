@@ -3,19 +3,19 @@ import { AuthContext } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
 import Loading from "./Loading";
 import UpdateTipModal from "../components/UpdateTipModal";
+import { ThemeContext } from "../contexts/ThemeContext";
+
 
 const MyTips = () => {
   const { user } = useContext(AuthContext);
   const [tips, setTips] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [theme] = useState(localStorage.getItem("theme") || "light");
+  const { theme } = useContext(ThemeContext);
+  const isDark = theme === "dark";
+  
   const [selectedTip, setSelectedTip] = useState(null);
 
-  const isDark = theme === "dark";
-
   useEffect(() => {
-    document.documentElement.classList.toggle("dark", isDark);
-    document.documentElement.setAttribute("data-theme", theme);
 
     const fetchUserTips = async () => {
       try {
@@ -34,7 +34,7 @@ const MyTips = () => {
     if (user?.email) {
       fetchUserTips();
     }
-  }, [user, isDark]);
+  }, [user]);
 
   const handleDelete = async (id) => {
     toast.info(

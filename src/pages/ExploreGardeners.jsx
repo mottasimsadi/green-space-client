@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { FaTimes, FaSearch } from "react-icons/fa";
 import gardenersData from "../data/gardeners.json";
 import Loading from "./Loading";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 const ExploreGardeners = () => {
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  const { theme } = useContext(ThemeContext);
+  const isDark = theme === "dark";
+  
   const [gardeners, setGardeners] = useState([]);
   const [loading, setLoading] = useState(true);
   const [modalData, setModalData] = useState(null);
@@ -12,14 +15,11 @@ const ExploreGardeners = () => {
   const [sortKey, setSortKey] = useState("name");
   const [searchTerm, setSearchTerm] = useState("");
 
-  const isDark = theme === "dark";
 
   useEffect(() => {
-    document.documentElement.classList.toggle("dark", isDark);
-    document.documentElement.setAttribute("data-theme", theme);
     setGardeners(gardenersData);
     setLoading(false);
-  }, [theme]);
+  }, []);
 
   const openModal = (gardener) => setModalData(gardener);
   const closeModal = () => setModalData(null);

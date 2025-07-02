@@ -1,10 +1,10 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router";
 import { AuthContext } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import Loading from "./Loading";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 const Register = () => {
   const { createUser, googleSignIn, updateUser } = useContext(AuthContext);
@@ -18,18 +18,15 @@ const Register = () => {
   });
 
   const [loading, setLoading] = useState(false);
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  const { theme } = useContext(ThemeContext);
+  const isDark = theme === "dark";
+  
   const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
-
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", theme === "dark");
-    document.documentElement.setAttribute("data-theme", theme);
-  }, [theme]);
 
   const validatePassword = (password) => {
     const hasUpper = /[A-Z]/.test(password);
@@ -85,8 +82,6 @@ const Register = () => {
         setLoading(false);
       });
   };
-
-  const isDark = theme === "dark";
 
   return (
     <div

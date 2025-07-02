@@ -4,6 +4,8 @@ import { AuthContext } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
 import { FaThumbsUp } from "react-icons/fa";
 import Loading from "../pages/Loading";
+import { ThemeContext } from "../contexts/ThemeContext";
+
 
 const TipDetails = () => {
   const { user } = useContext(AuthContext);
@@ -12,12 +14,10 @@ const TipDetails = () => {
 
   const [tip, setTip] = useState(null);
   const [loading, setLoading] = useState(true);
-  const theme = localStorage.getItem("theme") || "light";
-  const isDark = theme === "dark";
+  const { theme } = useContext(ThemeContext);
+  const isDark = theme === "dark";  
 
   useEffect(() => {
-    document.documentElement.classList.toggle("dark", isDark);
-    document.documentElement.setAttribute("data-theme", theme);
 
     const fetchTip = async () => {
       try {
@@ -32,7 +32,7 @@ const TipDetails = () => {
     };
 
     fetchTip();
-  }, [id, isDark, theme]);
+  }, [id]);
 
   const handleLike = async () => {
     if (user?.email === tip.authorEmail) {

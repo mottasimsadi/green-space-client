@@ -1,33 +1,33 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router";
 import { FaChevronLeft, FaChevronRight, FaTimes } from "react-icons/fa";
 import { Fade } from "react-awesome-reveal";
 import { Tooltip } from "react-tooltip";
 import gardenersData from "../data/gardeners.json";
 import Loading from "./Loading";
+import { ThemeContext } from "../contexts/ThemeContext";
+
 
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loading, setLoading] = useState(true);
   const [trendingTips, setTrendingTips] = useState([]);
   const [activeGardeners, setActiveGardeners] = useState([]);
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  const { theme } = useContext(ThemeContext);
+  const isDark = theme === "dark";
+  
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState({
     title: "",
     description: "",
   });
 
-  const isDark = theme === "dark";
 
   useEffect(() => {
-    document.documentElement.classList.toggle("dark", isDark);
-    document.documentElement.setAttribute("data-theme", theme);
-
     const active = gardenersData.filter((g) => g.status === "active");
     setActiveGardeners(active);
     setLoading(false);
-  }, [theme]);
+  }, []);
 
   useEffect(() => {
     const fetchTrendingTips = async () => {

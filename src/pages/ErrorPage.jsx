@@ -1,16 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { useLocation, Link } from "react-router";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 const ErrorPage = () => {
   const location = useLocation();
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  const { theme } = useContext(ThemeContext);
   const isDark = theme === "dark";
+  
 
   useEffect(() => {
-    document.documentElement.classList.toggle("dark", isDark);
-    document.documentElement.setAttribute("data-theme", theme);
     console.error("404 Error: Page not found →", location.pathname);
-  }, [location.pathname, theme]);
+  }, [location.pathname]);
 
   return (
     <div

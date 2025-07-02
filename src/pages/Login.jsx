@@ -1,8 +1,9 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { useNavigate, useLocation, Link } from "react-router";
 import { AuthContext } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 const Login = () => {
   const { signIn, googleSignIn } = useContext(AuthContext);
@@ -12,12 +13,9 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  const { theme } = useContext(ThemeContext);
+  const isDark = theme === "dark";
 
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", theme === "dark");
-    document.documentElement.setAttribute("data-theme", theme);
-  }, [theme]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -55,8 +53,6 @@ const Login = () => {
   const handleForgotPassword = () => {
     navigate("/forget-password", { state: { email } });
   };
-
-  const isDark = theme === "dark";
 
   return (
     <div

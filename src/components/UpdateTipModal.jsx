@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { toast } from "react-toastify";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 const UpdateTipModal = ({ tip, user, onClose, onSuccess }) => {
   if (!tip) return null;
@@ -36,7 +37,8 @@ const UpdateTipModal = ({ tip, user, onClose, onSuccess }) => {
     }
   };
 
-  const theme = localStorage.getItem("theme") || "light";
+  const { theme } = useContext(ThemeContext);
+
   const isDark = theme === "dark";
 
   return (
@@ -105,12 +107,16 @@ const UpdateTipModal = ({ tip, user, onClose, onSuccess }) => {
           <input
             value={user?.displayName || ""}
             readOnly
-            className="input input-bordered w-full bg-gray-300 cursor-not-allowed"
+            className={`input input-bordered w-full cursor-not-allowed ${
+              isDark ? "bg-gray-500" : "bg-gray-300"
+            }`}
           />
           <input
             value={user?.email || ""}
             readOnly
-            className="input input-bordered w-full bg-gray-300 cursor-not-allowed"
+            className={`input input-bordered w-full cursor-not-allowed ${
+              isDark ? "bg-gray-500" : "bg-gray-300"
+            }`}
           />
           <div className="modal-action">
             <button type="submit" className="btn btn-success">

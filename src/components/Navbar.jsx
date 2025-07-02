@@ -130,7 +130,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className="shadow-md"
+      className="shadow-md sticky top-0 z-50"
       style={{ backgroundColor: theme === "dark" ? "#122312" : "#E6F2E8" }}
     >
       <div className="max-w-[95%] mx-auto">

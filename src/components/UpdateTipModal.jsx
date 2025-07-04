@@ -19,11 +19,14 @@ const UpdateTipModal = ({ tip, user, onClose, onSuccess }) => {
     };
 
     try {
-      const res = await fetch(`http://localhost:3000/tips/${tip._id}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updatedTip),
-      });
+      const res = await fetch(
+        `https://green-space-server.vercel.app/tips/${tip._id}`,
+        {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(updatedTip),
+        }
+      );
 
       if (res.ok) {
         toast.success("Tip updated!");

@@ -7,9 +7,8 @@ const ShareTip = () => {
   const { user } = useContext(AuthContext);
   const { theme } = useContext(ThemeContext);
   const isDark = theme === "dark";
-  
-  const [loading, setLoading] = useState(false);
 
+  const [loading, setLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     title: "",
@@ -42,7 +41,7 @@ const ShareTip = () => {
     };
 
     try {
-      const res = await fetch("http://localhost:3000/tips", {
+      const res = await fetch("https://green-space-server.vercel.app/tips", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(tipData),

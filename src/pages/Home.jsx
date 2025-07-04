@@ -7,7 +7,6 @@ import gardenersData from "../data/gardeners.json";
 import Loading from "./Loading";
 import { ThemeContext } from "../contexts/ThemeContext";
 
-
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -15,13 +14,12 @@ const Home = () => {
   const [activeGardeners, setActiveGardeners] = useState([]);
   const { theme } = useContext(ThemeContext);
   const isDark = theme === "dark";
-  
+
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState({
     title: "",
     description: "",
   });
-
 
   useEffect(() => {
     const active = gardenersData.filter((g) => g.status === "active");
@@ -32,7 +30,9 @@ const Home = () => {
   useEffect(() => {
     const fetchTrendingTips = async () => {
       try {
-        const res = await fetch("http://localhost:3000/tips/trending");
+        const res = await fetch(
+          "https://green-space-server.vercel.app/tips/trending"
+        );
         if (!res.ok) throw new Error("Failed to fetch trending tips");
         const data = await res.json();
         setTrendingTips(data);

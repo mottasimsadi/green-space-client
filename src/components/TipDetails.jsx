@@ -6,7 +6,6 @@ import { FaThumbsUp } from "react-icons/fa";
 import Loading from "../pages/Loading";
 import { ThemeContext } from "../contexts/ThemeContext";
 
-
 const TipDetails = () => {
   const { user } = useContext(AuthContext);
   const { id } = useParams();
@@ -15,13 +14,14 @@ const TipDetails = () => {
   const [tip, setTip] = useState(null);
   const [loading, setLoading] = useState(true);
   const { theme } = useContext(ThemeContext);
-  const isDark = theme === "dark";  
+  const isDark = theme === "dark";
 
   useEffect(() => {
-
     const fetchTip = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/tips/${id}`);
+        const res = await fetch(
+          `https://green-space-server.vercel.app/tips/${id}`
+        );
         const data = await res.json();
         setTip(data);
       } catch (err) {
@@ -41,10 +41,13 @@ const TipDetails = () => {
     }
 
     try {
-      const res = await fetch(`http://localhost:3000/tips/${id}/like`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-      });
+      const res = await fetch(
+        `https://green-space-server.vercel.app/tips/${id}/like`,
+        {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+        }
+      );
 
       if (res.ok) {
         setTip((prev) => ({

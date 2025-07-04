@@ -5,22 +5,20 @@ import Loading from "./Loading";
 import UpdateTipModal from "../components/UpdateTipModal";
 import { ThemeContext } from "../contexts/ThemeContext";
 
-
 const MyTips = () => {
   const { user } = useContext(AuthContext);
   const [tips, setTips] = useState([]);
   const [loading, setLoading] = useState(true);
   const { theme } = useContext(ThemeContext);
   const isDark = theme === "dark";
-  
+
   const [selectedTip, setSelectedTip] = useState(null);
 
   useEffect(() => {
-
     const fetchUserTips = async () => {
       try {
         const res = await fetch(
-          `http://localhost:3000/tips/user/${user?.email}`
+          `https://green-space-server.vercel.app/tips/user/${user?.email}`
         );
         const data = await res.json();
         setTips(data);
@@ -44,9 +42,12 @@ const MyTips = () => {
           <button
             onClick={async () => {
               try {
-                const res = await fetch(`http://localhost:3000/tips/${id}`, {
-                  method: "DELETE",
-                });
+                const res = await fetch(
+                  `https://green-space-server.vercel.app/tips/${id}`,
+                  {
+                    method: "DELETE",
+                  }
+                );
 
                 if (res.ok) {
                   setTips((prev) => prev.filter((tip) => tip._id !== id));

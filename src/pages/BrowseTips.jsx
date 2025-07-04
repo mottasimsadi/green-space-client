@@ -3,7 +3,6 @@ import { Link } from "react-router";
 import { toast } from "react-toastify";
 import { ThemeContext } from "../contexts/ThemeContext";
 
-
 const BrowseTips = () => {
   const [tips, setTips] = useState([]);
   const [filteredTips, setFilteredTips] = useState([]);
@@ -11,13 +10,13 @@ const BrowseTips = () => {
   const [loading, setLoading] = useState(true);
   const { theme } = useContext(ThemeContext);
   const isDark = theme === "dark";
-  
 
   useEffect(() => {
-
     const fetchTips = async () => {
       try {
-        const res = await fetch("http://localhost:3000/tips?status=Public");
+        const res = await fetch(
+          "https://green-space-server.vercel.app/tips?status=Public"
+        );
         const data = await res.json();
         setTips(data);
         setFilteredTips(data);

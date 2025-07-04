@@ -16,7 +16,7 @@ const Profile = () => {
     const fetchTipStats = async () => {
       try {
         const res = await fetch(
-          `http://localhost:3000/tips/user/${user?.email}`
+          `https://green-space-server.vercel.app/tips/user/${user?.email}`
         );
         const data = await res.json();
         setTipsCount(data.length || 0);

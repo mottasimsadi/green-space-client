@@ -3,7 +3,7 @@
 A full-stack platform for gardening enthusiasts to share tips, connect with local gardeners, and explore gardening resources. Built with React.js, Firebase Authentication, and MongoDB.
 
 ## 🔗 Live Links
-- **Client:** [Netlify Live Site](https://ph11-assign-10.netlify.app/)
+- **Client:** [Netlify Live Site](https://green-space-hub.netlify.app/)
 - **Server:** [Vercel API](https://green-space-server.vercel.app/)
 
 ## ✨ Key Features

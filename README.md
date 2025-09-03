@@ -40,16 +40,16 @@ A full-stack platform for gardening enthusiasts to share tips, connect with loca
 ## 📂 Project Structure
 ```
 gardening-app/
-├── public/            			             # Static assets
+├── public/            			           # Static assets
 ├── src/
 │   │
-│   ├── components/    			             # Reusable components like Navbar, TipsDetails
-│   ├── contexts/      			             # Theme and auth contexts
+│   ├── components/    			           # Reusable components like Navbar, TipsDetails
+│   ├── contexts/      			           # Theme and auth contexts
 │   ├── data/gardeners.json	             # gardeners.json data
 │   ├── firebase/firebase.config.js      # Firebase config
 │   ├── layouts/MainLayout.jsx           # Main application logic
-│   ├── pages/         			             # Route-based page components
-│   └── routes/        			             # Route configuration (Protected and public route setup)
+│   ├── pages/         			           # Route-based page components
+│   └── routes/        			           # Route configuration (Protected and public route setup)
 ```
 
 ## 🚀 Getting Started

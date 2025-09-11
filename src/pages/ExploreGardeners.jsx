@@ -7,14 +7,13 @@ import { ThemeContext } from "../contexts/ThemeContext";
 const ExploreGardeners = () => {
   const { theme } = useContext(ThemeContext);
   const isDark = theme === "dark";
-  
+
   const [gardeners, setGardeners] = useState([]);
   const [loading, setLoading] = useState(true);
   const [modalData, setModalData] = useState(null);
   const [filter, setFilter] = useState("all");
   const [sortKey, setSortKey] = useState("name");
   const [searchTerm, setSearchTerm] = useState("");
-
 
   useEffect(() => {
     setGardeners(gardenersData);
@@ -244,6 +243,7 @@ const ExploreGardeners = () => {
                       src={g.imageUrl}
                       alt={g.name}
                       className="w-full h-full object-cover"
+                      loading="lazy"
                     />
                   </div>
                   <div className="ml-4">

@@ -179,6 +179,7 @@ const Home = () => {
                         src={g.imageUrl}
                         alt={g.name}
                         className="w-full h-full object-cover"
+                        loading="lazy"
                       />
                     </div>
                     <div className="ml-4">
@@ -261,6 +262,7 @@ const Home = () => {
                         }
                         alt={tip.title}
                         className="w-full h-full object-cover"
+                        loading="lazy"
                       />
                       <div className="absolute top-2 right-2">
                         <span

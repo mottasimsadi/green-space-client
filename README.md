@@ -3,7 +3,7 @@
 A full-stack platform for gardening enthusiasts to share tips, connect with local gardeners, and explore gardening resources. Built with React.js, Firebase Authentication, and MongoDB.
 
 ## 🔗 Live Links
-- **Client:** [Netlify Live Site](https://ph11-assign-10.netlify.app/)
+- **Client:** [Netlify Live Site](https://green-space-hub.netlify.app/)
 - **Server:** [Vercel API](https://green-space-server.vercel.app/)
 
 ## ✨ Key Features
@@ -40,29 +40,29 @@ A full-stack platform for gardening enthusiasts to share tips, connect with loca
 ## 📂 Project Structure
 ```
 gardening-app/
-├── public/            			 # Static assets
+├── public/            			         # Static assets
 ├── src/
 │   │
-│   ├── components/    			 # Reusable components like Navbar, TipsDetails
-│   ├── contexts/      			 # Theme and auth contexts
-│   ├── data/gardeners.json	         # gardeners.json data
+│   ├── components/    			         # Reusable components like Navbar, TipsDetails
+│   ├── contexts/      			         # Theme and auth contexts
+│   ├── data/gardeners.json	             # gardeners.json data
 │   ├── firebase/firebase.config.js      # Firebase config
 │   ├── layouts/MainLayout.jsx           # Main application logic
-│   ├── pages/         			 # Route-based page components
-│   └── routes/        			 # Route configuration (Protected and public route setup)
+│   ├── pages/         			         # Route-based page components
+│   └── routes/        			         # Route configuration (Protected and public route setup)
 ```
 
 ## 🚀 Getting Started
 1. Clone both repositories:
 ```bash
-git clone https://github.com/Programming-Hero-Web-Course4/b11a10-client-side-mottasimsadi
-git clone https://github.com/Programming-Hero-Web-Course4/b11a10-server-side-mottasimsadi
+git clone https://github.com/mottasimsadi/green-space-client
+git clone https://github.com/mottasimsadi/green-space-server
 ```
 
 2. Install dependencies for both:
 ```bash
-cd b11a10-client-side-mottasimsadi && npm install
-cd ../b11a10-server-side-mottasimsadi && npm install
+cd green-space-client && npm install
+cd ../green-space-server && npm install
 ```
 
 3. Set up environment variables:

@@ -3,6 +3,7 @@ import { FaTimes, FaSearch } from "react-icons/fa";
 import gardenersData from "../data/gardeners.json";
 import Loading from "./Loading";
 import { ThemeContext } from "../contexts/ThemeContext";
+import ImageOptimizer from "../components/ImageOptimizer";
 
 const ExploreGardeners = () => {
   const { theme } = useContext(ThemeContext);
@@ -239,11 +240,11 @@ const ExploreGardeners = () => {
               >
                 <div className="flex items-center mb-4">
                   <div className="w-16 h-16 rounded-full overflow-hidden">
-                    <img
+                    <ImageOptimizer
                       src={g.imageUrl}
                       alt={g.name}
-                      className="w-full h-full object-cover"
-                      loading="lazy"
+                      width="64px"
+                      height="64px"
                     />
                   </div>
                   <div className="ml-4">

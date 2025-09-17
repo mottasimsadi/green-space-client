@@ -6,6 +6,7 @@ import { Tooltip } from "react-tooltip";
 import gardenersData from "../data/gardeners.json";
 import Loading from "./Loading";
 import { ThemeContext } from "../contexts/ThemeContext";
+import ImageOptimizer from "../components/ImageOptimizer";
 
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -109,6 +110,8 @@ const Home = () => {
                 src={slide.image}
                 alt={slide.title}
                 className="absolute inset-0 w-full h-full object-cover opacity-80"
+                loading="eager"
+                fetchpriority="high"
               />
               <div className="absolute inset-0 bg-black/50 z-10"></div>
               <div className="relative z-20 w-full flex flex-col justify-center items-center text-center px-4">
@@ -175,11 +178,11 @@ const Home = () => {
                 >
                   <div className="flex items-center mb-4">
                     <div className="w-16 h-16 rounded-full overflow-hidden">
-                      <img
+                      <ImageOptimizer
                         src={g.imageUrl}
                         alt={g.name}
-                        className="w-full h-full object-cover"
-                        loading="lazy"
+                        width="64px"
+                        height="64px"
                       />
                     </div>
                     <div className="ml-4">
